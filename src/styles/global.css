@@ -6,3 +6,5 @@
 .site-header nav.open{display:flex}.toast.visible{opacity:1}.footer-brand{display:block;color:var(--gold);font:22px Georgia}.site-footer>div>span{display:block;font-size:10px}
 
 @media(max-width:360px){.rise-orbit.outer{width:275px;height:275px;left:calc(50% - 137.5px);top:40px}.rise-node{width:75px;height:75px}.node-r{left:calc(50% - 37.5px)}.hero h1{font-size:38px}.hero-roles{letter-spacing:0}}
+
+.contact-codes{position:relative;z-index:1;width:min(100%,700px);margin:32px 0}.contact-codes img{width:100%;height:auto;border:1px solid #45634c}.contact-codes figcaption{display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:center;color:var(--gold);font-size:13px;margin-top:12px}.contact-codes p{font-size:12px;color:#bdcabc;margin:12px 0 0}@media(max-width:360px){.contact-codes figcaption{font-size:11px;gap:8px}}
