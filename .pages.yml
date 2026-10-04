@@ -1,0 +1,53 @@
+media:
+  input: public/assets/uploads
+  output: /assets/uploads
+content:
+  - name: blog
+    label: 心启花开文章
+    type: collection
+    path: src/content/blog
+    filename: '{primary}.md'
+    view:
+      primary: title
+      fields: [title, category, draft, publishDate]
+    fields:
+      - { name: title, label: 标题, type: string, required: true }
+      - { name: description, label: 摘要, type: text, required: true }
+      - { name: category, label: 分类, type: string, required: true }
+      - { name: publishDate, label: 网站发布日期, type: date, required: true }
+      - { name: draft, label: 保持草稿, type: boolean, default: true }
+      - { name: featured, label: 首页推荐, type: boolean, default: false }
+      - { name: wechatUrl, label: 公众号原文链接, type: string }
+      - name: syncStatus
+        label: 两端发布状态
+        type: select
+        options:
+          values: [website-only, wechat-only, synced, needs-review]
+        default: website-only
+      - { name: note, label: 来源或版本说明, type: text }
+      - { name: body, label: 正文, type: rich-text }
+  - name: courses
+    label: 课程与最新安排
+    type: collection
+    path: src/content/courses
+    fields:
+      - { name: title, label: 课程标题, type: string, required: true }
+      - { name: description, label: 摘要, type: text, required: true }
+      - { name: category, label: 分类, type: string, required: true }
+      - { name: publishDate, label: 网站发布日期, type: date, required: true }
+      - { name: draft, label: 保持草稿, type: boolean, default: true }
+      - { name: audience, label: 适合人群, type: string, required: true }
+      - { name: format, label: 形式, type: string, required: true }
+      - name: status
+        label: 课程状态
+        type: select
+        options:
+          values: [theme, upcoming, open, closed, ongoing, ended, evergreen]
+        default: theme
+      - { name: startAt, label: 开始时间（含 +08:00 时区）, type: string }
+      - { name: endAt, label: 结束时间（含 +08:00 时区）, type: string }
+      - { name: registrationDeadline, label: 报名截止时间（含时区）, type: string }
+      - { name: location, label: 地点, type: string }
+      - { name: priceNote, label: 价格说明, type: string }
+      - { name: registrationUrl, label: 报名链接, type: string }
+      - { name: body, label: 正文, type: rich-text }

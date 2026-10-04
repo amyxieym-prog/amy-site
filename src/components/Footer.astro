@@ -1,0 +1,4 @@
+---
+import site from '../data/site.json';
+---
+<footer class="site-footer"><div><a class="footer-brand" href="/">议敏 Amy</a><span>{site.roles.join(' · ')}</span></div><p>{site.vision}</p><nav aria-label="页脚导航"><a href="/blog/">文章</a><a href="/rss.xml">RSS 订阅</a><a href="/#contact">联系</a></nav><small>© {new Intl.DateTimeFormat('en', { timeZone: 'Asia/Shanghai', year: 'numeric' }).format(new Date())} Amy</small></footer>

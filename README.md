@@ -1,56 +1,31 @@
-# 议敏 Amy · RISE 个人网站
+# 议敏 Amy · 乐学四步个人网站
 
-以 RISE 为专业主线的一页式个人网站。深墨绿与暖米白视觉，真实肖像，响应式排版，包含四维理论交互、脱敏案例、课程主题、可更新课期、个人观点和微信联系。
+Astro 静态网站，以最新个人介绍为内容依据，保留一页式品牌首页，配套可独立分享的文章、脱敏案例与课程页。墨绿、香槟金、暖米白，参考 Amy 人物品牌海报。
 
-仓库：https://github.com/amyxieym-prog/amy-site
-
-GitHub Pages 地址（部署成功后）：https://amyxieym-prog.github.io/amy-site/
+目标正式域名：https://amyxie.yiloo.cn （Cloudflare 授权及域名绑定完成前不视为已上线）。
 
 ## 本地查看
 
-安装 Node.js 20 或更新版本，无需安装依赖。
+需要 Node.js 24 和 pnpm 11.25.0。
 
-```sh
-npm run dev
+```
+pnpm install
+pnpm dev
 ```
 
-打开 `http://127.0.0.1:4173`。内容工作台：`http://127.0.0.1:4173/editor.html`。
+打开 http://127.0.0.1:4321 。检查与构建：`pnpm check`、`pnpm build`。构建目录为 `dist`。
 
 ## 更新内容
 
-全部动态内容位于 `content/site.json`。可直接修改，或用本地工作台填写联系方式和真实课期、编辑案例与文章，再导出 `site.json` 替换该文件。
+- 文章：`src/content/blog/`，使用 `templates/新文章.md`。
+- 案例：`src/content/cases/`，草稿和未授权内容不会公开。
+- 课程：`src/content/courses/`，主题与具体活动分开管理。
+- 品牌联系方式：`src/data/site.json`。
 
-工作台仅保存浏览器本地草稿和导出文件，**没有在线数据库、账户或自动发布功能**，不进入公开网站部署。后续需要在线后台时，可在此内容结构上接入具备身份认证的内容服务。
+参阅 `docs/文章与公众号发布流程.md` 和 `docs/内容来源与口径.md`。`.pages.yml` 提供 Pages CMS 表单配置，仍需要连接账号；公众号由人工发布，真实链接回填网站。
 
-更新后：
+## 发布
 
-```sh
-npm run check
-npm run build
-git add content/site.json
-git commit -m "Update website content"
-git push
-```
+Cloudflare Pages：构建命令 `pnpm build`，产物 `dist`，Node 24。推荐连接本 GitHub 仓库的正式分支以自动部署。也可在账号授权后使用 `pnpm deploy` 手动上传。绑定 amyxie.yiloo.cn 时，先在 Pages 添加自定义域名，再处理 DNS。
 
-推送 main 后 GitHub Actions 自动检查、构建并部署。首次需在仓库 Settings → Pages 将 Source 设为 GitHub Actions。部署目录是 `dist/`，不包含本地工作台、文档或 QA。
-
-## 课程时间与状态
-
-日期时间必须包含时区，例如 `2026-10-20T19:30:00+08:00`。状态支持 `upcoming`、`open`、`closed`、`ongoing`、`ended`、`evergreen`。已结束课程自动退出近期列表；到报名截止时间自动改为报名截止；活动开始后改为进行中，不再显示报名按钮。无公布课期时显示真实的空状态。
-
-课程只展示真实确认的安排，不把课程母稿当成在售套餐。需要价格、地点或参与条件时，写入课程 description，并链接正式报名页。
-
-## 内容边界
-
-RISE 使用 2026-09-23 确认口径：E → S → I → R → 成绩。案例已按 Amy 在本次网站任务中的明确授权脱敏，不公开姓名、学校、家庭身份、地域、具体分数、原始转写与内部评估分值。网站不发布内部知识库，不承诺统一效果。详细原则见 `docs/content-policy.md`。
-
-## 项目结构
-
-- `index.html` / `styles.css` / `app.js`：网站页面、视觉与交互
-- `content/site.json`：课程、案例、笔记、联系方式
-- `content-model.js`：内容校验、课程状态转换、链接限制
-- `editor.html` / `editor.js`：仅本地的内容工作台
-- `scripts/`：本地预览、检查与构建
-- `.github/workflows/pages.yml`：GitHub Pages 自动发布
-
-无外部字体、第三方跟踪或远程图片依赖。
+原版保存在 `legacy/v1/` 和 Git 标签 `v1-github-pages`。当前改版在 `astro-cloudflare-v2` 分支，正式发布前保留现有 GitHub Pages 原版。

@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import {publishedCases,formatDate} from '../../lib/content';
+const entries=await publishedCases();
+---
+<Base title="实践案例｜议敏 Amy"><section class="section page-heading"><p class="eyebrow">INTREASURE / 实践案例</p><h1>实践案例</h1><p>把理解带进生活，让成长有方向，也有温度。</p></section><section class="section listing"><div class="card-grid">{entries.map(e=><a class="card" data-category={e.data.category} href={'/cases/'+e.id+'/'}><p class="eyebrow">{e.data.category}</p><h2>{e.data.title}</h2><p>{e.data.description}</p><span class="card-bottom">{formatDate(e.data.publishDate)} · 阅读 ↗</span></a>)}</div></section></Base>

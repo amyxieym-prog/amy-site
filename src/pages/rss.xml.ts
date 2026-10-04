@@ -1,0 +1,1 @@
+import rss from '@astrojs/rss';import {publishedBlog} from '../lib/content';export async function GET(context:any){return rss({title:'心启花开 · 议敏 Amy',description:'学习赋能、家庭关系与成长记录',site:context.site,items:(await publishedBlog()).map(e=>({title:e.data.title,description:e.data.description,pubDate:e.data.publishDate,link:'/blog/'+e.id+'/'})),customData:'<language>zh-cn</language>'});}

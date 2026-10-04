@@ -1,0 +1,6 @@
+---
+import Base from '../../layouts/Base.astro';
+import {publishedCourses,formatDate} from '../../lib/content';
+const entries=await publishedCourses();
+---
+<Base title="课程与支持｜议敏 Amy"><section class="section page-heading"><p class="eyebrow">INTREASURE / 课程与支持</p><h1>课程与支持</h1><p>把理解带进生活，让成长有方向，也有温度。</p></section><section class="section listing"><div class="card-grid">{entries.map(e=><a class="card" data-category={e.data.category} href={'/courses/'+e.id+'/'}><p class="eyebrow">{e.data.category}</p><h2>{e.data.title}</h2><p>{e.data.description}</p><span class="card-bottom">{formatDate(e.data.publishDate)} · 阅读 ↗</span></a>)}</div><p class="fine-print">目前展示课程主题，新一期日期与报名安排公布后更新。</p></section></Base>
