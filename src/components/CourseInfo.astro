@@ -1,0 +1,11 @@
+---
+import { formatDate } from '../lib/content';
+const {data}=Astro.props;
+const labels:Record<string,string>={theme:'课程主题',upcoming:'即将开始',open:'开放报名',closed:'报名关闭',ongoing:'进行中',ended:'已结束',evergreen:'长期开放'};
+const now=Date.now(); const end=Date.parse(data.endAt||''); const start=Date.parse(data.startAt||''); const deadline=Date.parse(data.registrationDeadline||'');
+const ended=data.status==='ended'||end<=now;
+const label=ended?'已结束':start<=now&&data.status!=='closed'?'进行中':deadline<=now&&data.status==='open'?'报名截止':labels[data.status];
+const canRegister=!!data.registrationUrl&&!ended&&!(start<=now)&&!(deadline<=now)&&['open','evergreen'].includes(data.status);
+const time=(value:string)=>new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(value));
+---
+<div class="observation" data-course-status={data.status} data-start={data.startAt} data-end={data.endAt} data-deadline={data.registrationDeadline}><p class="eyebrow" data-status-label>{label}</p><p>适合：{data.audience}</p><p>形式：{data.format}</p>{data.startAt&&<p>开始：{formatDate(data.startAt)} {time(data.startAt)}（北京时间）</p>}{data.endAt&&<p>结束：{formatDate(data.endAt)} {time(data.endAt)}</p>}{data.location&&<p>地点：{data.location}</p>}{data.priceNote&&<p>费用：{data.priceNote}</p>}{canRegister&&<a class="button button-green" href={data.registrationUrl} data-registration target="_blank" rel="noopener noreferrer">查看报名安排 ↗</a>}</div>
