@@ -2,7 +2,7 @@
 
 Astro 静态网站，以最新个人介绍为内容依据，保留一页式品牌首页，配套可独立分享的文章、脱敏案例与课程页。墨绿、香槟金、暖米白，参考 Amy 人物品牌海报。
 
-目标正式域名：https://amyxie.yiloo.cn （Cloudflare 授权及域名绑定完成前不视为已上线）。
+正式地址：https://amyxie.yiloo.cn 。已部署 Cloudflare Pages 并绑定子域名，HTTPS 验证通过。
 
 ## 本地查看
 
@@ -26,6 +26,6 @@ pnpm dev
 
 ## 发布
 
-Cloudflare Pages：构建命令 `pnpm build`，产物 `dist`，Node 24。推荐连接本 GitHub 仓库的正式分支以自动部署。也可在账号授权后使用 `pnpm deploy` 手动上传。绑定 amyxie.yiloo.cn 时，先在 Pages 添加自定义域名，再处理 DNS。
+Cloudflare Pages：构建命令 `pnpm build`，产物 `dist`，Node 24。本仓库 main 分支通过 GitHub Actions 检查、构建并自动上传 Cloudflare Pages。专用 Pages Write 凭证已加密存储于仓库 Secrets，有效期一年。也可使用 `pnpm deploy` 手动上传。绑定 amyxie.yiloo.cn 时，先在 Pages 添加自定义域名，再处理 DNS。
 
-原版保存在 `legacy/v1/` 和 Git 标签 `v1-github-pages`。当前改版在 `astro-cloudflare-v2` 分支，正式发布前保留现有 GitHub Pages 原版。
+原版保存在 `legacy/v1/` 和 Git 标签 `v1-github-pages`。Astro 正式版本使用 main 分支，改版分支 astro-cloudflare-v2 保留。现有 GitHub Pages 原版作为历史版本。
